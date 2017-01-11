@@ -1,0 +1,23 @@
+{
+  "name": "remote-pad-press",
+  "version": "1.0.0",
+  "description": "Apresentação de Slides sobre o projeto Remote Pad - Controle Remoto para Jogos de Computadores com príncipios de IoT",
+  "main": "slide_config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "browser-sync  start --server --files 'js/*.js' --files 'index.html' --files 'theme/*.css' --flies 'slide_config.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/comsolid/remote-pad-press.git"
+  },
+  "author": "Átila Camurça <camurca.home@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/comsolid/remote-pad-press/issues"
+  },
+  "homepage": "https://github.com/comsolid/remote-pad-press#readme",
+  "dependencies": {
+    "browser-sync": "^2.18.6"
+  }
+}
