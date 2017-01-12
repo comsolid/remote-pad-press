@@ -99,6 +99,16 @@ como gamepad?</p>
         <slide  >
             
             <hgroup>
+                <h2></h2>
+                <h3></h3>
+            </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="html5" src="img/html5.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
                 <h2>Device Orientation Events</h2>
                 <h3></h3>
             </hgroup>
@@ -153,9 +163,144 @@ física do dispositivo móvel.</p>
                 <h2></h2>
                 <h3></h3>
             </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="nodejs" src="img/nodejs.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>NodeJS</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><p>NodeJS usa um modelo orientado a eventos, com E/S não bloqueante que o torna
+leve e eficiente.</p>
+<p>Como o Javascript é restrito ao browser foi necessário criar outros
+módulos como:</p>
+<ul>
+<li>Buffer</li>
+<li>Child Process</li>
+<li>File System</li>
+<li>OS</li>
+<li>Stream, etc.</li>
+</ul></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>NodeJS</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><p>Node é projetado para construir aplicações escaláveis de rede. A seguir um exemplo
+de servidor que pode atender a várias conexões concorrentemente:</p>
+<pre class="prettyprint">
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Benchmark</h2>
+                <h3></h3>
+            </hgroup>
+            <article class="flexbox vcenter" ><p><code>$ pm2 start index.js</code></p>
+<p><img alt="nodejs-server" src="img/nodejs-pm2-monit.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Benchmark</h2>
+                <h3></h3>
+            </hgroup>
+            <article class="flexbox vcenter" ><p><code>$ locust --host=http://localhost:3003</code></p>
+<p><img alt="locustio" src="img/locust-nodejs-1000users.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>NodeJS Event Loop</h2>
+                <h3></h3>
+            </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="threading_node" src="img/threading_node.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>NodeJS Event Loop</h2>
+                <h3></h3>
+            </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="node-event-loop" src="img/node-event-loop.jpeg" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>NodeJS Event Loop</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><p>Visualizing the javascript runtime at runtime</p>
+<p><a href="http://latentflip.com/loupe">http://latentflip.com/loupe</a></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Referências</h2>
+                <h3></h3>
+            </hgroup>
             <article ><ul>
+<li>HTML5<ul>
 <li><a href="http://www.girliemac.com/presentation-slides/html5-mobile-approach/deviceAPIs.html">http://www.girliemac.com/presentation-slides/html5-mobile-approach/deviceAPIs.html</a></li>
 <li><a href="https://github.com/AurelioDeRosa/HTML5-API-demos">https://github.com/AurelioDeRosa/HTML5-API-demos</a></li>
+</ul>
+</li>
+<li>NodeJS<ul>
+<li><a href="https://strongloop.com/strongblog/node-js-event-loop/">https://strongloop.com/strongblog/node-js-event-loop/</a></li>
+<li><a href="http://latentflip.com/loupe">http://latentflip.com/loupe</a></li>
+<li><a href="https://strongloop.com/strongblog/node-js-is-faster-than-java/">https://strongloop.com/strongblog/node-js-is-faster-than-java/</a></li>
+</ul>
+</li>
+<li>Outras Ferramentas<ul>
+<li><a href="http://locust.io/">http://locust.io/</a></li>
+</ul>
+</li>
+</ul></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Referências</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><ul>
+<li>VueJS</li>
 </ul></article>
             
         </slide>
