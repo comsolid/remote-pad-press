@@ -64,8 +64,10 @@ URL: https://code.google.com/p/io-2012-slides
         <slide  >
             
             <hgroup>
+                
                 <h2>Remote Pad</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article ><p>Imagine poder controlar um jogo em seu computador usando seu smartphone
 como gamepad?</p>
@@ -76,8 +78,10 @@ como gamepad?</p>
         <slide  >
             
             <hgroup>
+                
                 <h2>Arquitetura</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article ><p><img alt="architecture" src="img/architecture.png" style="width: 70%" class="center" /></p></article>
             
@@ -86,16 +90,18 @@ como gamepad?</p>
         <slide  >
             
             <hgroup>
+                
                 <h2>Agenda</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article ><p>Tópicos:</p>
 <ul>
 <li><strong>html5</strong> - events, hardware access</li>
 <li><strong>nodejs</strong> - event driven, assynchronous I/O</li>
+<li><strong>mqtt</strong> - real time communication</li>
 <li><strong>robotjs</strong> - envios de tecla através de software</li>
 <li><strong>vuejs</strong> - unobtrusive reactivity system</li>
-<li><strong>mqtt</strong> - real time communication</li>
 </ul></article>
             
         </slide>
@@ -103,8 +109,8 @@ como gamepad?</p>
         <slide  >
             
             <hgroup>
-                <h2></h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article class="flexbox vcenter" ><p><img alt="html5" src="img/html5.png" /></p></article>
             
@@ -113,8 +119,10 @@ como gamepad?</p>
         <slide  >
             
             <hgroup>
+                
                 <h2>Device Orientation Events</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article ><p>Eventos no DOM para obter informações sobre a orientação e movimentação
 física do dispositivo móvel.</p>
@@ -129,8 +137,10 @@ física do dispositivo móvel.</p>
         <slide  >
             
             <hgroup>
+                
                 <h2>Device Orientation Events</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article ><p><img alt="device-events" src="img/device-alpha-beta-gamma.png" style="width: 90%" class="center" /></p>
 
@@ -146,8 +156,10 @@ física do dispositivo móvel.</p>
         <slide  >
             
             <hgroup>
+                
                 <h2>Outras APIs</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article ><ul>
 <li>Ambient Light API</li>
@@ -164,8 +176,8 @@ física do dispositivo móvel.</p>
         <slide  >
             
             <hgroup>
-                <h2></h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article class="flexbox vcenter" ><p><img alt="nodejs" src="img/nodejs.png" /></p></article>
             
@@ -174,8 +186,10 @@ física do dispositivo móvel.</p>
         <slide  >
             
             <hgroup>
+                
                 <h2>NodeJS</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article ><p>NodeJS usa um modelo orientado a eventos, com E/S não bloqueante que o torna
 leve e eficiente.</p>
@@ -194,26 +208,28 @@ módulos como:</p>
         <slide  >
             
             <hgroup>
+                
                 <h2>NodeJS</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article ><p>Node é projetado para construir aplicações escaláveis de rede. A seguir um exemplo
 de servidor que pode atender a várias conexões concorrentemente:</p>
-<pre class="prettyprint">
-const http = require('http');
+<pre class="prettyprint" data-lang="js">
+const http = require('http')
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const hostname = '127.0.0.1'
+const port = 3000
 
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
-});
+  res.statusCode = 200
+  res.setHeader('Content-Type', 'text/plain')
+  res.end('Hello World\n')
+})
 
 server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+  console.log(`Server running at http://${hostname}:${port}/`)
+})
 </pre></article>
             
         </slide>
@@ -221,8 +237,10 @@ server.listen(port, hostname, () => {
         <slide  >
             
             <hgroup>
+                
                 <h2>Benchmark</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article class="flexbox vcenter" ><p><code>$ pm2 start index.js</code></p>
 <p><img alt="nodejs-server" src="img/nodejs-pm2-monit.png" /></p></article>
@@ -232,8 +250,10 @@ server.listen(port, hostname, () => {
         <slide  >
             
             <hgroup>
+                
                 <h2>Benchmark</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article class="flexbox vcenter" ><p><code>$ locust --host=http://localhost:3003</code></p>
 <p><img alt="locustio" src="img/locust-nodejs-1000users.png" /></p></article>
@@ -243,8 +263,10 @@ server.listen(port, hostname, () => {
         <slide  >
             
             <hgroup>
+                
                 <h2>NodeJS Event Loop</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article class="flexbox vcenter" ><p><img alt="threading_node" src="img/threading_node.png" /></p></article>
             
@@ -253,8 +275,10 @@ server.listen(port, hostname, () => {
         <slide  >
             
             <hgroup>
+                
                 <h2>NodeJS Event Loop</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article class="flexbox vcenter" ><p><img alt="node-event-loop" src="img/node-event-loop.jpeg" /></p></article>
             
@@ -263,8 +287,10 @@ server.listen(port, hostname, () => {
         <slide  >
             
             <hgroup>
+                
                 <h2>NodeJS Event Loop</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article ><p>Visualizing the javascript runtime at runtime</p>
 <p><a href="http://latentflip.com/loupe">http://latentflip.com/loupe</a></p></article>
@@ -274,8 +300,228 @@ server.listen(port, hostname, () => {
         <slide  >
             
             <hgroup>
+                
+                
+            </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="robotjs" src="img/robotjs.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>RobotJS</h2>
+                
+                
+                <h3>Exemplo</h3>
+                
+            </hgroup>
+            <article ><pre class="prettyprint" data-lang="js">
+var robot = require('robotjs')
+// Press enter.
+robot.keyTap('enter')
+// hold the shift key
+robot.keyToggle('shift', 'down')
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>RobotJS</h2>
+                
+                
+            </hgroup>
+            <article ><p>Usa <code>node-gyp</code> ou Node.js native addon build tool</p>
+<p>Ferramenta de linha de comando <em>cross-plataform</em> escrita em NodeJS para
+compilação de módulos nativos (C/C++) para NodeJS</p>
+<p>Requisição de teclas do teclado é escrita em C/C++ e há um <em>binding</em>
+para NodeJS</p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                
+            </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="mqtt" src="img/mqttorg.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>MQTT</h2>
+                
+                
+                <h3>MQ Telemetry Transport</h3>
+                
+            </hgroup>
+            <article ><p>É um protocolo de mensagens baseado em <strong>publish</strong>/<strong>subscribe</strong>, extremamente
+simples e leve, projetado para redes com pouca banda, alta latência ou não
+confiáveis.</p>
+<p>Princípios: minimizar o uso da banda de rede e recursos do dispositivo enquanto
+tenta maximinizar a confiabilidade e algum grau de garantia de entrega das
+mensagens.</p>
+<p>Também usado nos chamados <strong>M2M</strong> (Machine-to-machine) ou <strong>Internet of Things</strong></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Quality of service</h2>
+                
+                
+            </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="mqtt-qos" src="img/mqtt-qos.jpg" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Mosca</h2>
+                
+                
+                <h3>MQTT broker as a module</h3>
+                
+            </hgroup>
+            <article ><pre class="prettyprint" data-lang="js">
+var mosca = require('mosca')
+var settings = {
+    port: 1883
+}
+var server = new mosca.Server(settings)
+server.on('published', function(packet, client) {
+    console.log('Published', packet.topic, packet.payload)
+})
+server.on('ready', function setup() {
+    console.log('Mosca server is up and running')
+})
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Mosca</h2>
+                
+                
+                <h3>Exemplo Cliente</h3>
+                
+            </hgroup>
+            <article ><pre class="prettyprint" data-lang="js">
+var mqtt = require('mqtt')
+var client = mqtt.connect('mqtt://localhost:1883')
+
+client.on('connect', function() {
+    client.subscribe('presence')
+    client.publish('presence', 'Hello mqtt')
+})
+
+client.on('message', function(topic, message) {
+    // message is Buffer
+    console.log(message.toString())
+    client.end()
+})
+</pre></article>
+            
+        </slide>
+        
+        <slide class="nobackground fill"  style="background-image: url(img/vuejs-logo.jpg)" >
+            
+            <hgroup>
+                
+                
+            </hgroup>
+            <article ></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>VueJS</h2>
+                
+                
+            </hgroup>
+            <article ><p><strong>Progressive Framework</strong> para construção de interfaces de usuário</p>
+<p><img alt="vuejs-render" src="img/vue-render.png" style="width: 75%" class="center" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>VueJS</h2>
+                
+                
+                <h3>Javascript Object.defineProperty</h3>
+                
+            </hgroup>
+            <article ><pre class="prettyprint" data-lang="js">
+function Archiver() {
+  var temperature = null, archive = [];
+
+  Object.defineProperty(this, 'temperature', {
+    get: function() {
+      return temperature;
+    },
+    set: function(value) {
+      temperature = value;
+      archive.push({ val: temperature });
+    }
+  });
+
+  this.getArchive = function() { return archive; };
+}
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>VueJS</h2>
+                
+                
+                <h3>Javascript Object.defineProperty</h3>
+                
+            </hgroup>
+            <article ><pre class="prettyprint" data-lang="js">
+var arc = new Archiver();
+arc.temperature;
+arc.temperature = 11;
+arc.temperature = 13;
+arc.getArchive();
+// => [{ val: 11 }, { val: 13 }]
+</pre>
+
+<!-- TODO: https://vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats --></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
                 <h2>Referências</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article ><ul>
 <li>HTML5<ul>
@@ -300,11 +546,41 @@ server.listen(port, hostname, () => {
         <slide  >
             
             <hgroup>
+                
                 <h2>Referências</h2>
-                <h3></h3>
+                
+                
             </hgroup>
             <article ><ul>
-<li>VueJS</li>
+<li>MQTT<ul>
+<li><a href="http://mqtt.org/faq">http://mqtt.org/faq</a></li>
+<li><a href="http://www.ibm.com/developerworks/br/local/websphere/mq_conceitos_melhores_praticas/index1.html">http://www.ibm.com/developerworks/br/local/websphere/mq_conceitos_melhores_praticas/index1.html</a></li>
+<li><a href="https://github.com/mcollina/mosca">https://github.com/mcollina/mosca</a></li>
+</ul>
+</li>
+<li>RobotJS<ul>
+<li><a href="http://robotjs.io/">http://robotjs.io/</a></li>
+<li><a href="https://github.com/nodejs/node-gyp">https://github.com/nodejs/node-gyp</a></li>
+</ul>
+</li>
+</ul></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Referências</h2>
+                
+                
+            </hgroup>
+            <article ><ul>
+<li>VueJS<ul>
+<li><a href="https://vuejs.org/">https://vuejs.org/</a></li>
+<li><a href="https://vuejs.org/v2/guide/reactivity.html">https://vuejs.org/v2/guide/reactivity.html</a></li>
+</ul>
+</li>
 </ul></article>
             
         </slide>
