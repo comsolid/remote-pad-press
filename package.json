@@ -5,7 +5,10 @@
   "main": "slide_config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "browser-sync  start --server --files 'js/*.js' --files 'index.html' --files 'theme/*.css' --flies 'slide_config.js'"
+    "start": "browser-sync  start --server --files 'js/*.js' --files 'index.html' --files 'theme/*.css' --flies 'slide_config.js' --reload-delay 3000",
+    "build": "gulp build",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -17,7 +20,17 @@
     "url": "https://github.com/comsolid/remote-pad-press/issues"
   },
   "homepage": "https://github.com/comsolid/remote-pad-press#readme",
-  "dependencies": {
-    "browser-sync": "^2.18.6"
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.18.6",
+    "del": "^2.2.2",
+    "gh-pages": "^0.12.0",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-useref": "^3.1.2"
   }
 }

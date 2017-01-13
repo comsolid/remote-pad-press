@@ -18,11 +18,15 @@ URL: https://code.google.com/p/io-2012-slides
     <!--This one seems to work all the time, but really small on ipad-->
     <!--<meta name="viewport" content="initial-scale=0.4">-->
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--build:css css/styles.min.css-->
     <link rel="stylesheet" media="all" href="theme/css/default.css">
     <link rel="stylesheet" media="all" href="theme/css/app.css">
+    <!--endbuild-->
+    <!--build:css css/phone.min.css media="only screen and (max-device-width: 480px)"-->
     <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
-    <base target="_blank">
+    <!--endbuild-->
     <!-- This amazingness opens all links in a new tab. -->
+    <base target="_blank">
     <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
 </head>
 
