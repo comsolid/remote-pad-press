@@ -1,0 +1,335 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Google IO 2012</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <!--This one seems to work all the time, but really small on ipad-->
+    <!--<meta name="viewport" content="initial-scale=0.4">-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="stylesheet" href="css/phone.min.css" media="only screen and (max-device-width: 480px)">
+    <!-- This amazingness opens all links in a new tab. -->
+    <base target="_blank">
+    <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+
+<body style="opacity: 0">
+
+    <slides class="layout-widescreen">
+
+        <slide class="logoslide nobackground">
+            <article class="flexbox vcenter">
+                <span>
+                    <img src="img/banner.png">
+                </span>
+            </article>
+        </slide>
+
+        <slide class="title-slide segue nobackground">
+            <aside class="gdbar">
+                <img src="img/logo.png">
+            </aside>
+            <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+            <hgroup class="auto-fadein">
+                <h1 data-config-title>
+                    <!-- populated from slide_config.json -->
+                </h1>
+                <h2 data-config-subtitle>
+                    <!-- populated from slide_config.json -->
+                </h2>
+                <p data-config-presenter>
+                    <!-- populated from slide_config.json -->
+                </p>
+            </hgroup>
+        </slide>
+
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Remote Pad</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><p>Imagine poder controlar um jogo em seu computador usando seu smartphone
+como gamepad?</p>
+<p><img alt="racepad" src="img/racepad-page.png" style="width: 70%" class="center" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Arquitetura</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><p><img alt="architecture" src="img/architecture.png" style="width: 70%" class="center" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Agenda</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><p>Tópicos:</p>
+<ul>
+<li><strong>html5</strong> - events, hardware access</li>
+<li><strong>nodejs</strong> - event driven, assynchronous I/O</li>
+<li><strong>robotjs</strong> - envios de tecla através de software</li>
+<li><strong>vuejs</strong> - unobtrusive reactivity system</li>
+<li><strong>mqtt</strong> - real time communication</li>
+</ul></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2></h2>
+                <h3></h3>
+            </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="html5" src="img/html5.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Device Orientation Events</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><p>Eventos no DOM para obter informações sobre a orientação e movimentação
+física do dispositivo móvel.</p>
+<ul>
+<li>Giroscópio</li>
+<li>Acelerômetro</li>
+<li>Compasso</li>
+</ul></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Device Orientation Events</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><p><img alt="device-events" src="img/device-alpha-beta-gamma.png" style="width: 90%" class="center" /></p>
+
+<p>Eventos:</p>
+<ul>
+<li><code>deviceorientation</code></li>
+<li><code>devicemotion</code> &#10003;</li>
+<li><code>compassneedscalibration</code></li>
+</ul></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Outras APIs</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><ul>
+<li>Ambient Light API</li>
+<li>Geolocation API</li>
+<li>Battery Status API</li>
+<li>getUserMedia API</li>
+<li>Vibration API</li>
+<li>Web Notification API</li>
+<li>Web Speech API</li>
+</ul></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2></h2>
+                <h3></h3>
+            </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="nodejs" src="img/nodejs.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>NodeJS</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><p>NodeJS usa um modelo orientado a eventos, com E/S não bloqueante que o torna
+leve e eficiente.</p>
+<p>Como o Javascript é restrito ao browser foi necessário criar outros
+módulos como:</p>
+<ul>
+<li>Buffer</li>
+<li>Child Process</li>
+<li>File System</li>
+<li>OS</li>
+<li>Stream, etc.</li>
+</ul></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>NodeJS</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><p>Node é projetado para construir aplicações escaláveis de rede. A seguir um exemplo
+de servidor que pode atender a várias conexões concorrentemente:</p>
+<pre class="prettyprint">
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Benchmark</h2>
+                <h3></h3>
+            </hgroup>
+            <article class="flexbox vcenter" ><p><code>$ pm2 start index.js</code></p>
+<p><img alt="nodejs-server" src="img/nodejs-pm2-monit.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Benchmark</h2>
+                <h3></h3>
+            </hgroup>
+            <article class="flexbox vcenter" ><p><code>$ locust --host=http://localhost:3003</code></p>
+<p><img alt="locustio" src="img/locust-nodejs-1000users.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>NodeJS Event Loop</h2>
+                <h3></h3>
+            </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="threading_node" src="img/threading_node.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>NodeJS Event Loop</h2>
+                <h3></h3>
+            </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="node-event-loop" src="img/node-event-loop.jpeg" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>NodeJS Event Loop</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><p>Visualizing the javascript runtime at runtime</p>
+<p><a href="http://latentflip.com/loupe">http://latentflip.com/loupe</a></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Referências</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><ul>
+<li>HTML5<ul>
+<li><a href="http://www.girliemac.com/presentation-slides/html5-mobile-approach/deviceAPIs.html">http://www.girliemac.com/presentation-slides/html5-mobile-approach/deviceAPIs.html</a></li>
+<li><a href="https://github.com/AurelioDeRosa/HTML5-API-demos">https://github.com/AurelioDeRosa/HTML5-API-demos</a></li>
+</ul>
+</li>
+<li>NodeJS<ul>
+<li><a href="https://strongloop.com/strongblog/node-js-event-loop/">https://strongloop.com/strongblog/node-js-event-loop/</a></li>
+<li><a href="http://latentflip.com/loupe">http://latentflip.com/loupe</a></li>
+<li><a href="https://strongloop.com/strongblog/node-js-is-faster-than-java/">https://strongloop.com/strongblog/node-js-is-faster-than-java/</a></li>
+</ul>
+</li>
+<li>Outras Ferramentas<ul>
+<li><a href="http://locust.io/">http://locust.io/</a></li>
+</ul>
+</li>
+</ul></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                <h2>Referências</h2>
+                <h3></h3>
+            </hgroup>
+            <article ><ul>
+<li>VueJS</li>
+</ul></article>
+            
+        </slide>
+        
+
+        <slide class="thank-you-slide segue nobackground">
+            <aside class="gdbar right">
+                <img src="img/logo.png">
+            </aside>
+            <article class="flexbox vleft auto-fadein">
+                <h2>&lt;Obrigado pela aten&ccedil;&atilde;o!&gt;</h2>
+                <p>Qualquer d&uacute;vida entre em contato.</p>
+            </article>
+            <p class="auto-fadein" data-config-contact>
+                <!-- populated from slide_config.json -->
+            </p>
+        </slide>
+
+        <!--
+        <slide class="logoslide dark nobackground">
+            <article class="flexbox vcenter">
+                <span><img src="images/google_developers_logo_white.png"></span>
+            </article>
+        </slide>
+        -->
+
+        <slide class="backdrop"></slide>
+
+    </slides>
+
+</body>
+
+</html>
