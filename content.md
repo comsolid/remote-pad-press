@@ -7,15 +7,13 @@ como gamepad?
 
 ---
 
-title: Arquitetura
+title: Remote Pad - Ideia
 
 <p><img alt="architecture" src="img/architecture.png" style="width: 70%" class="center" /></p>
 
 ---
 
 title: Agenda
-
-Tópicos:
 
 * **html5** - events, hardware access
 * **nodejs** - event driven, assynchronous I/O
@@ -51,6 +49,22 @@ Eventos:
 * `deviceorientation`
 * `devicemotion` &#10003;
 * `compassneedscalibration`
+
+---
+
+title: DeviceMotion suporte
+
+![caniuse-devicemotion](img/caniuse-devicemotion.png)
+
+<http://caniuse.com/#feat=deviceorientation>
+
+---
+
+title: Touch Events suporte
+
+![caniuse-touchevents](img/caniuse-touchevents.png)
+
+<http://caniuse.com/#feat=touch>
 
 ---
 
@@ -197,7 +211,7 @@ simples e leve, projetado para redes com pouca banda, alta latência ou não
 confiáveis.
 
 Princípios: minimizar o uso da banda de rede e recursos do dispositivo enquanto
-tenta maximinizar a confiabilidade e algum grau de garantia de entrega das
+tenta maximinizar a confiabilidade e oferecer algum grau de garantia de entrega das
 mensagens.
 
 Também usado nos chamados **M2M** (Machine-to-machine) ou **Internet of Things**
@@ -251,6 +265,52 @@ client.on('message', function(topic, message) {
 
 ---
 
+title: MQTT no browser
+
+Utiliza WebSockets para a conexão
+
+<div>
+	<input id="mqtt_message"/>
+    <button id="mqtt_send">Send</button>
+    <button id="mqtt_close">Close</button>
+    <div id="mqtt_result" style="margin-bottom: 100px;"></div>
+</div>
+
+<https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API>
+
+---
+
+title: MQTT no browser
+
+<pre class="prettyprint" data-lang="js">
+var btnSend = document.getElementById('mqtt_send')
+var message = document.getElementById('mqtt_message')
+var result = document.getElementById('mqtt_result')
+var client = mqtt.connect('ws://test.mosquitto.org:8080/mqtt')
+client.subscribe("mqtt/demo")
+
+client.on("message", function(topic, payload) {
+	result.innerHTML = [topic, payload].join(": ")
+})
+
+btnSend.onclick = function (e) {
+	e.preventDefault()
+	client.publish("mqtt/demo", message.value)
+}
+</pre>
+
+<https://github.com/mqttjs/MQTT.js#browser>
+
+---
+
+title: WebSockets suporte
+
+![caniuse-websockets](img/caniuse-websockets.png)
+
+<http://caniuse.com/#feat=websockets>
+
+---
+
 class: nobackground fill
 image: img/vuejs-logo.jpg
 
@@ -269,19 +329,19 @@ subtitle: Javascript Object.defineProperty
 
 <pre class="prettyprint" data-lang="js">
 function Archiver() {
-  var temperature = null, archive = [];
+  var temperature = null, archive = []
 
   Object.defineProperty(this, 'temperature', {
     get: function() {
-      return temperature;
+      return temperature
     },
     set: function(value) {
-      temperature = value;
-      archive.push({ val: temperature });
+      temperature = value
+      archive.push({ val: temperature })
     }
-  });
+  })
 
-  this.getArchive = function() { return archive; };
+  this.getArchive = function() { return archive }
 }
 </pre>
 
@@ -291,15 +351,164 @@ title: VueJS
 subtitle: Javascript Object.defineProperty
 
 <pre class="prettyprint" data-lang="js">
-var arc = new Archiver();
-arc.temperature;
-arc.temperature = 11;
-arc.temperature = 13;
-arc.getArchive();
+var arc = new Archiver()
+arc.temperature
+arc.temperature = 11
+arc.temperature = 13
+arc.getArchive()
 // => [{ val: 11 }, { val: 13 }]
 </pre>
 
-<!-- TODO: https://vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats -->
+---
+
+title: Virtual DOM
+content_class: flexbox vcenter
+
+![virtual-dom](img/virtual-dom-update.png)
+
+---
+
+title: Reactive System
+
+Trecho para inicialização da variável que indica mudanças no eixo **Y**:
+
+<pre class="prettyprint" data-lang="js">
+export default {
+	data () {
+    	acceleration: {
+        	y: 0
+        }
+    },
+	mounted () {
+    	if (window.DeviceMotionEvent !== undefined) {
+            window.ondevicemotion = (e) => {
+                this.acceleration.y = e.accelerationIncludingGravity.y || 0
+            }
+        }
+    }
+}
+</pre>
+
+---
+
+title: Reactive System
+
+Trecho para indicar que o usuário está virando para a esquerda ou direita:
+
+<pre class="prettyprint" data-lang="js">
+export default {
+	computed: {
+        isTurningLeft () {
+            const { accelerationSensibility } = this.$store.state
+            Vue.set(this.keypress, 'left',
+            	this.acceleration.y < accelerationSensibility * -1)
+            return this.keypress.left
+        },
+        isTurningRight () {
+            const { accelerationSensibility } = this.$store.state
+            Vue.set(this.keypress, 'right',
+            	this.acceleration.y > accelerationSensibility)
+            return this.keypress.right
+        }
+    }
+}
+</pre>
+
+---
+
+title: Remote Pad
+
+Cliente: <https://github.com/comsolid/remote-pad>
+
+Servidor: <https://github.com/comsolid/remote-pad-server>
+
+---
+
+title: Remote Pad
+subtitle: Protocolo de envio de comandos - Cliente
+
+<pre class="prettyprint" data-lang="json">
+{
+    "keypress": {
+      "Y": false,
+      "X": false,
+      "B": false,
+      "A": false,
+      "left": false,
+      "right": false,
+      "up": false,
+      "down": false
+    }
+}
+</pre>
+
+---
+
+title: Remote Pad
+subtitle: Protocolo de envio de comandos - Servidor
+
+Alice
+
+<pre class="prettyprint" data-lang="json">
+{
+    "left": "left",
+    "right": "right",
+    "up": "up",
+    "down": "down",
+    "B": "shift",
+    "A": "z",
+    "Y": "control",
+    "X": "space"
+}
+</pre>
+
+---
+
+title: Remote Pad
+subtitle: Servidor
+
+<pre class="prettyprint" data-lang="js">
+const topics = ['alice', 'bob', 'carol', 'david']
+
+server.on('published', function(packet, client) {
+    topics.forEach(function (item) {
+        if (packet.topic === `race/${item}`) {
+            const commands = JSON.parse(packet.payload.toString())
+            robot(commands, clients[item])
+        } else if (packet.topic === `settings/${item}`) {
+            const settings = JSON.parse(packet.payload.toString())
+            if (clients[item]) {
+                clients[item].config(settings)
+            }
+        }
+    })
+})
+</pre>
+
+---
+
+title: Remote Pad
+subtitle: Servidor
+
+<pre class="prettyprint" data-lang="js">
+var robot = require('robotjs')
+
+module.exports = function (commands, player) {
+    for (let prop in commands) {
+        let key = player.keys[prop]
+        if (key) {
+            let toggle = (commands[prop] ? 'down' : 'up')
+            robot.keyToggle(player.keys[prop], toggle)
+        }
+    }
+}
+</pre>
+
+---
+
+title: Remote Pad
+
+<p><img alt="architecture" src="img/architecture.png" style="width: 70%" class="center" /></p>
 
 ---
 
@@ -334,3 +543,5 @@ title: Referências
 * VueJS
 	* <https://vuejs.org/>
     * <https://vuejs.org/v2/guide/reactivity.html>
+* Vídeos
+	* <https://www.youtube.com/watch?v=WE7GVIFRV7Q> - Matteo Collina: "MQTT" and "Node.js"- Messaging the Internet of Things

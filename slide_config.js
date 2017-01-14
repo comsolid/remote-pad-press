@@ -23,7 +23,7 @@ var SLIDE_CONFIG = {
     // Author information
     presenters: [{
             name: 'Átila Camurça',
-            company: 'Desenvolvedor<br>Fidias',
+            company: 'Desenvolvedor/Fundador<br>Fidias',
             twitter: '@atilacamurca',
             github: 'http://github.com/atilacamurca'
         }

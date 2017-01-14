@@ -5,7 +5,7 @@
   "main": "slide_config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "browser-sync  start --server --files 'js/*.js' --files 'index.html' --files 'theme/*.css' --flies 'slide_config.js' --reload-delay 3000",
+    "start": "browser-sync  start --server --files 'js/*.js' --files 'index.html' --files 'theme/*.css' --flies 'slide_config.js' --reload-delay 2000",
     "build": "gulp build",
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build"

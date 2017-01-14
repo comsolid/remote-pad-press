@@ -79,7 +79,7 @@ como gamepad?</p>
             
             <hgroup>
                 
-                <h2>Arquitetura</h2>
+                <h2>Remote Pad - Ideia</h2>
                 
                 
             </hgroup>
@@ -95,8 +95,7 @@ como gamepad?</p>
                 
                 
             </hgroup>
-            <article ><p>Tópicos:</p>
-<ul>
+            <article ><ul>
 <li><strong>html5</strong> - events, hardware access</li>
 <li><strong>nodejs</strong> - event driven, assynchronous I/O</li>
 <li><strong>mqtt</strong> - real time communication</li>
@@ -150,6 +149,32 @@ física do dispositivo móvel.</p>
 <li><code>devicemotion</code> &#10003;</li>
 <li><code>compassneedscalibration</code></li>
 </ul></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>DeviceMotion suporte</h2>
+                
+                
+            </hgroup>
+            <article ><p><img alt="caniuse-devicemotion" src="img/caniuse-devicemotion.png" /></p>
+<p><a href="http://caniuse.com/#feat=deviceorientation">http://caniuse.com/#feat=deviceorientation</a></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Touch Events suporte</h2>
+                
+                
+            </hgroup>
+            <article ><p><img alt="caniuse-touchevents" src="img/caniuse-touchevents.png" /></p>
+<p><a href="http://caniuse.com/#feat=touch">http://caniuse.com/#feat=touch</a></p></article>
             
         </slide>
         
@@ -367,7 +392,7 @@ para NodeJS</p></article>
 simples e leve, projetado para redes com pouca banda, alta latência ou não
 confiáveis.</p>
 <p>Princípios: minimizar o uso da banda de rede e recursos do dispositivo enquanto
-tenta maximinizar a confiabilidade e algum grau de garantia de entrega das
+tenta maximinizar a confiabilidade e oferecer algum grau de garantia de entrega das
 mensagens.</p>
 <p>Também usado nos chamados <strong>M2M</strong> (Machine-to-machine) ou <strong>Internet of Things</strong></p></article>
             
@@ -439,6 +464,68 @@ client.on('message', function(topic, message) {
             
         </slide>
         
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>MQTT no browser</h2>
+                
+                
+            </hgroup>
+            <article ><p>Utiliza WebSockets para a conexão</p>
+<div>
+    <input id="mqtt_message"/>
+    <button id="mqtt_send">Send</button>
+    <button id="mqtt_close">Close</button>
+    <div id="mqtt_result" style="margin-bottom: 100px;"></div>
+</div>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API">https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API</a></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>MQTT no browser</h2>
+                
+                
+            </hgroup>
+            <article ><pre class="prettyprint" data-lang="js">
+var btnSend = document.getElementById('mqtt_send')
+var message = document.getElementById('mqtt_message')
+var result = document.getElementById('mqtt_result')
+var client = mqtt.connect('ws://test.mosquitto.org:8080/mqtt')
+client.subscribe("mqtt/demo")
+
+client.on("message", function(topic, payload) {
+    result.innerHTML = [topic, payload].join(": ")
+})
+
+btnSend.onclick = function (e) {
+    e.preventDefault()
+    client.publish("mqtt/demo", message.value)
+}
+</pre>
+
+<p><a href="https://github.com/mqttjs/MQTT.js#browser">https://github.com/mqttjs/MQTT.js#browser</a></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>WebSockets suporte</h2>
+                
+                
+            </hgroup>
+            <article ><p><img alt="caniuse-websockets" src="img/caniuse-websockets.png" /></p>
+<p><a href="http://caniuse.com/#feat=websockets">http://caniuse.com/#feat=websockets</a></p></article>
+            
+        </slide>
+        
         <slide class="nobackground fill"  style="background-image: url(img/vuejs-logo.jpg)" >
             
             <hgroup>
@@ -474,19 +561,19 @@ client.on('message', function(topic, message) {
             </hgroup>
             <article ><pre class="prettyprint" data-lang="js">
 function Archiver() {
-  var temperature = null, archive = [];
+  var temperature = null, archive = []
 
   Object.defineProperty(this, 'temperature', {
     get: function() {
-      return temperature;
+      return temperature
     },
     set: function(value) {
-      temperature = value;
-      archive.push({ val: temperature });
+      temperature = value
+      archive.push({ val: temperature })
     }
-  });
+  })
 
-  this.getArchive = function() { return archive; };
+  this.getArchive = function() { return archive }
 }
 </pre></article>
             
@@ -503,15 +590,217 @@ function Archiver() {
                 
             </hgroup>
             <article ><pre class="prettyprint" data-lang="js">
-var arc = new Archiver();
-arc.temperature;
-arc.temperature = 11;
-arc.temperature = 13;
-arc.getArchive();
+var arc = new Archiver()
+arc.temperature
+arc.temperature = 11
+arc.temperature = 13
+arc.getArchive()
 // => [{ val: 11 }, { val: 13 }]
-</pre>
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Virtual DOM</h2>
+                
+                
+            </hgroup>
+            <article class="flexbox vcenter" ><p><img alt="virtual-dom" src="img/virtual-dom-update.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Reactive System</h2>
+                
+                
+            </hgroup>
+            <article ><p>Trecho para inicialização da variável que indica mudanças no eixo <strong>Y</strong>:</p>
+<pre class="prettyprint" data-lang="js">
+export default {
+    data () {
+        acceleration: {
+            y: 0
+        }
+    },
+    mounted () {
+        if (window.DeviceMotionEvent !== undefined) {
+            window.ondevicemotion = (e) => {
+                this.acceleration.y = e.accelerationIncludingGravity.y || 0
+            }
+        }
+    }
+}
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Reactive System</h2>
+                
+                
+            </hgroup>
+            <article ><p>Trecho para indicar que o usuário está virando para a esquerda ou direita:</p>
+<pre class="prettyprint" data-lang="js">
+export default {
+    computed: {
+        isTurningLeft () {
+            const { accelerationSensibility } = this.$store.state
+            Vue.set(this.keypress, 'left',
+                this.acceleration.y < accelerationSensibility * -1)
+            return this.keypress.left
+        },
+        isTurningRight () {
+            const { accelerationSensibility } = this.$store.state
+            Vue.set(this.keypress, 'right',
+                this.acceleration.y > accelerationSensibility)
+            return this.keypress.right
+        }
+    }
+}
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Remote Pad</h2>
+                
+                
+            </hgroup>
+            <article ><p>Cliente: <a href="https://github.com/comsolid/remote-pad">https://github.com/comsolid/remote-pad</a></p>
+<p>Servidor: <a href="https://github.com/comsolid/remote-pad-server">https://github.com/comsolid/remote-pad-server</a></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Remote Pad</h2>
+                
+                
+                <h3>Protocolo de envio de comandos - Cliente</h3>
+                
+            </hgroup>
+            <article ><pre class="prettyprint" data-lang="json">
+{
+    "keypress": {
+      "Y": false,
+      "X": false,
+      "B": false,
+      "A": false,
+      "left": false,
+      "right": false,
+      "up": false,
+      "down": false
+    }
+}
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Remote Pad</h2>
+                
+                
+                <h3>Protocolo de envio de comandos - Servidor</h3>
+                
+            </hgroup>
+            <article ><p>Alice</p>
+<pre class="prettyprint" data-lang="json">
+{
+    "left": "left",
+    "right": "right",
+    "up": "up",
+    "down": "down",
+    "B": "shift",
+    "A": "z",
+    "Y": "control",
+    "X": "space"
+}
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Remote Pad</h2>
+                
+                
+                <h3>Servidor</h3>
+                
+            </hgroup>
+            <article ><pre class="prettyprint" data-lang="js">
+const topics = ['alice', 'bob', 'carol', 'david']
 
-<!-- TODO: https://vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats --></article>
+server.on('published', function(packet, client) {
+    topics.forEach(function (item) {
+        if (packet.topic === `race/${item}`) {
+            const commands = JSON.parse(packet.payload.toString())
+            robot(commands, clients[item])
+        } else if (packet.topic === `settings/${item}`) {
+            const settings = JSON.parse(packet.payload.toString())
+            if (clients[item]) {
+                clients[item].config(settings)
+            }
+        }
+    })
+})
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Remote Pad</h2>
+                
+                
+                <h3>Servidor</h3>
+                
+            </hgroup>
+            <article ><pre class="prettyprint" data-lang="js">
+var robot = require('robotjs')
+
+module.exports = function (commands, player) {
+    for (let prop in commands) {
+        let key = player.keys[prop]
+        if (key) {
+            let toggle = (commands[prop] ? 'down' : 'up')
+            robot.keyToggle(player.keys[prop], toggle)
+        }
+    }
+}
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Remote Pad</h2>
+                
+                
+            </hgroup>
+            <article ><p><img alt="architecture" src="img/architecture.png" style="width: 70%" class="center" /></p></article>
             
         </slide>
         
@@ -579,6 +868,10 @@ arc.getArchive();
 <li>VueJS<ul>
 <li><a href="https://vuejs.org/">https://vuejs.org/</a></li>
 <li><a href="https://vuejs.org/v2/guide/reactivity.html">https://vuejs.org/v2/guide/reactivity.html</a></li>
+</ul>
+</li>
+<li>Vídeos<ul>
+<li><a href="https://www.youtube.com/watch?v=WE7GVIFRV7Q">https://www.youtube.com/watch?v=WE7GVIFRV7Q</a> - Matteo Collina: "MQTT" and "Node.js"- Messaging the Internet of Things</li>
 </ul>
 </li>
 </ul></article>
