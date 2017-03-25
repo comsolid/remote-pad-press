@@ -80,9 +80,8 @@ title: Outras APIs
 
 ---
 
-content_class: flexbox vcenter
-
-![nodejs](img/nodejs.png)
+class: segue nobackground fill
+image: img/nodejs-segue.png
 
 ---
 
@@ -152,13 +151,6 @@ content_class: flexbox vcenter
 ---
 
 title: NodeJS Event Loop
-content_class: flexbox vcenter
-
-![node-event-loop](img/node-event-loop.jpeg)
-
----
-
-title: NodeJS Event Loop
 
 Visualizing the javascript runtime at runtime
 
@@ -177,8 +169,10 @@ subtitle: Exemplo
 
 <pre class="prettyprint" data-lang="js">
 var robot = require('robotjs')
+
 // Press enter.
 robot.keyTap('enter')
+
 // hold the shift key
 robot.keyToggle('shift', 'down')
 </pre>
@@ -189,7 +183,7 @@ title: RobotJS
 
 Usa `node-gyp` ou Node.js native addon build tool
 
-Ferramenta de linha de comando _cross-plataform_ escrita em NodeJS para
+Ferramenta de linha de comando multi plataforma escrita em NodeJS para
 compilação de módulos nativos (C/C++) para NodeJS
 
 Requisição de teclas do teclado é escrita em C/C++ e há um _binding_
@@ -197,14 +191,13 @@ para NodeJS
 
 ---
 
-content_class: flexbox vcenter
-
-![mqtt](img/mqttorg.png)
+class: segue nobackground fill
+image: img/mqttorg-segue.png
 
 ---
 
 title: MQTT
-subtitle: MQ Telemetry Transport
+subtitle: Message Queue Telemetry Transport
 
 É um protocolo de mensagens baseado em **publish**/**subscribe**, extremamente
 simples e leve, projetado para redes com pouca banda, alta latência ou não
@@ -287,15 +280,15 @@ var btnSend = document.getElementById('mqtt_send')
 var message = document.getElementById('mqtt_message')
 var result = document.getElementById('mqtt_result')
 var client = mqtt.connect('ws://test.mosquitto.org:8080/mqtt')
-client.subscribe("mqtt/demo")
+client.subscribe('mqtt/demo')
 
-client.on("message", function(topic, payload) {
-	result.innerHTML = [topic, payload].join(": ")
+client.on('message', function(topic, payload) {
+	result.innerHTML = [topic, payload].join(': ')
 })
 
 btnSend.onclick = function (e) {
 	e.preventDefault()
-	client.publish("mqtt/demo", message.value)
+	client.publish('mqtt/demo', message.value)
 }
 </pre>
 
@@ -311,7 +304,7 @@ title: WebSockets suporte
 
 ---
 
-class: nobackground fill
+class: segue nobackground fill
 image: img/vuejs-logo.jpg
 
 ---
@@ -324,50 +317,6 @@ title: VueJS
 
 ---
 
-title: VueJS
-subtitle: Javascript Object.defineProperty
-
-<pre class="prettyprint" data-lang="js">
-function Archiver() {
-  var temperature = null, archive = []
-
-  Object.defineProperty(this, 'temperature', {
-    get: function() {
-      return temperature
-    },
-    set: function(value) {
-      temperature = value
-      archive.push({ val: temperature })
-    }
-  })
-
-  this.getArchive = function() { return archive }
-}
-</pre>
-
----
-
-title: VueJS
-subtitle: Javascript Object.defineProperty
-
-<pre class="prettyprint" data-lang="js">
-var arc = new Archiver()
-arc.temperature
-arc.temperature = 11
-arc.temperature = 13
-arc.getArchive()
-// => [{ val: 11 }, { val: 13 }]
-</pre>
-
----
-
-title: Virtual DOM
-content_class: flexbox vcenter
-
-![virtual-dom](img/virtual-dom-update.png)
-
----
-
 title: Reactive System
 
 Trecho para inicialização da variável que indica mudanças no eixo **Y**:
@@ -375,14 +324,14 @@ Trecho para inicialização da variável que indica mudanças no eixo **Y**:
 <pre class="prettyprint" data-lang="js">
 export default {
 	data () {
-    	acceleration: {
+    	<b>acceleration: {
         	y: 0
-        }
+        }</b>
     },
 	mounted () {
     	if (window.DeviceMotionEvent !== undefined) {
             window.ondevicemotion = (e) => {
-                this.acceleration.y = e.accelerationIncludingGravity.y || 0
+                <b>this.acceleration.y = e.accelerationIncludingGravity.y || 0</b>
             }
         }
     }
@@ -400,14 +349,14 @@ export default {
 	computed: {
         isTurningLeft () {
             const { accelerationSensibility } = this.$store.state
-            Vue.set(this.keypress, 'left',
-            	this.acceleration.y < accelerationSensibility * -1)
+            this.keypress.left =
+            	<b>this.acceleration.y < accelerationSensibility * -1</b>
             return this.keypress.left
         },
         isTurningRight () {
             const { accelerationSensibility } = this.$store.state
-            Vue.set(this.keypress, 'right',
-            	this.acceleration.y > accelerationSensibility)
+            this.keypress.right =
+            	<b>this.acceleration.y > accelerationSensibility</b>
             return this.keypress.right
         }
     }
@@ -417,10 +366,18 @@ export default {
 ---
 
 title: Remote Pad
+class: segue nobackground fill
+image: img/remote-pad-gui-services.png
+
+---
+
+title: Remote Pad
 
 Cliente: <https://github.com/comsolid/remote-pad>
 
 Servidor: <https://github.com/comsolid/remote-pad-server>
+
+GUI (Interface Gráfica): <https://github.com/comsolid/remote-pad-gui>
 
 ---
 
@@ -471,17 +428,11 @@ subtitle: Servidor
 const topics = ['alice', 'bob', 'carol', 'david']
 
 server.on('published', function(packet, client) {
-    topics.forEach(function (item) {
-        if (packet.topic === `race/${item}`) {
-            const commands = JSON.parse(packet.payload.toString())
-            robot(commands, clients[item])
-        } else if (packet.topic === `settings/${item}`) {
-            const settings = JSON.parse(packet.payload.toString())
-            if (clients[item]) {
-                clients[item].config(settings)
-            }
-        }
-    })
+	const [ type, player ] = packet.topic.split('/')
+    if (type.lastIndexOf('pad', 0) == 0) {
+    	const commands = JSON.parse(packet.payload.toString())
+    	<b>pad(commands, clients[player])</b>
+    }
 })
 </pre>
 
@@ -491,14 +442,14 @@ title: Remote Pad
 subtitle: Servidor
 
 <pre class="prettyprint" data-lang="js">
-var robot = require('robotjs')
+var <b>robot</b> = require('robotjs')
 
 module.exports = function (commands, player) {
     for (let prop in commands) {
         let key = player.keys[prop]
         if (key) {
-            let toggle = (commands[prop] ? 'down' : 'up')
-            robot.keyToggle(player.keys[prop], toggle)
+            let toggle = (<b>commands[prop]</b> ? 'down' : 'up')
+            <b>robot.keyToggle(player.keys[prop], toggle)</b>
         }
     }
 }
@@ -509,6 +460,14 @@ module.exports = function (commands, player) {
 title: Remote Pad
 
 <p><img alt="architecture" src="img/architecture.png" style="width: 70%" class="center" /></p>
+
+---
+
+title: Remote Pad
+
+<p><img alt="race-pad" src="img/racepad-page.png" style="width: 50%" class="center" /></p>
+
+<p><img alt="directional-pad" src="img/directional-pad-page.png" style="width: 50%" class="center" /></p>
 
 ---
 
