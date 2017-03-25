@@ -193,13 +193,15 @@ física do dispositivo móvel.</p>
             
         </slide>
         
-        <slide  >
+        <slide class="segue nobackground fill"  style="background-image: url(img/nodejs-segue.png)" >
             
-            <hgroup>
+            <aside class="gdbar">
+                <img src="img/logo.png">
+            </aside>
+            <hgroup class="auto-fadein">
                 
                 
             </hgroup>
-            <article class="flexbox vcenter" ><p><img alt="nodejs" src="img/nodejs.png" /></p></article>
             
         </slide>
         
@@ -300,18 +302,6 @@ server.listen(port, hostname, () => {
                 
                 
             </hgroup>
-            <article class="flexbox vcenter" ><p><img alt="node-event-loop" src="img/node-event-loop.jpeg" /></p></article>
-            
-        </slide>
-        
-        <slide  >
-            
-            <hgroup>
-                
-                <h2>NodeJS Event Loop</h2>
-                
-                
-            </hgroup>
             <article ><p>Visualizing the javascript runtime at runtime</p>
 <p><a href="http://latentflip.com/loupe">http://latentflip.com/loupe</a></p></article>
             
@@ -339,8 +329,10 @@ server.listen(port, hostname, () => {
             </hgroup>
             <article ><pre class="prettyprint" data-lang="js">
 var robot = require('robotjs')
+
 // Press enter.
 robot.keyTap('enter')
+
 // hold the shift key
 robot.keyToggle('shift', 'down')
 </pre></article>
@@ -356,20 +348,22 @@ robot.keyToggle('shift', 'down')
                 
             </hgroup>
             <article ><p>Usa <code>node-gyp</code> ou Node.js native addon build tool</p>
-<p>Ferramenta de linha de comando <em>cross-plataform</em> escrita em NodeJS para
+<p>Ferramenta de linha de comando multi plataforma escrita em NodeJS para
 compilação de módulos nativos (C/C++) para NodeJS</p>
 <p>Requisição de teclas do teclado é escrita em C/C++ e há um <em>binding</em>
 para NodeJS</p></article>
             
         </slide>
         
-        <slide  >
+        <slide class="segue nobackground fill"  style="background-image: url(img/mqttorg-segue.png)" >
             
-            <hgroup>
+            <aside class="gdbar">
+                <img src="img/logo.png">
+            </aside>
+            <hgroup class="auto-fadein">
                 
                 
             </hgroup>
-            <article class="flexbox vcenter" ><p><img alt="mqtt" src="img/mqttorg.png" /></p></article>
             
         </slide>
         
@@ -380,7 +374,7 @@ para NodeJS</p></article>
                 <h2>MQTT</h2>
                 
                 
-                <h3>MQ Telemetry Transport</h3>
+                <h3>Message Queue Telemetry Transport</h3>
                 
             </hgroup>
             <article ><p>É um protocolo de mensagens baseado em <strong>publish</strong>/<strong>subscribe</strong>, extremamente
@@ -492,15 +486,15 @@ var btnSend = document.getElementById('mqtt_send')
 var message = document.getElementById('mqtt_message')
 var result = document.getElementById('mqtt_result')
 var client = mqtt.connect('ws://test.mosquitto.org:8080/mqtt')
-client.subscribe("mqtt/demo")
+client.subscribe('mqtt/demo')
 
-client.on("message", function(topic, payload) {
-    result.innerHTML = [topic, payload].join(": ")
+client.on('message', function(topic, payload) {
+    result.innerHTML = [topic, payload].join(': ')
 })
 
 btnSend.onclick = function (e) {
     e.preventDefault()
-    client.publish("mqtt/demo", message.value)
+    client.publish('mqtt/demo', message.value)
 }
 </pre>
 
@@ -521,13 +515,15 @@ btnSend.onclick = function (e) {
             
         </slide>
         
-        <slide class="nobackground fill"  style="background-image: url(img/vuejs-logo.jpg)" >
+        <slide class="segue nobackground fill"  style="background-image: url(img/vuejs-logo.jpg)" >
             
-            <hgroup>
+            <aside class="gdbar">
+                <img src="img/logo.png">
+            </aside>
+            <hgroup class="auto-fadein">
                 
                 
             </hgroup>
-            <article ></article>
             
         </slide>
         
@@ -548,69 +544,6 @@ btnSend.onclick = function (e) {
             
             <hgroup>
                 
-                <h2>VueJS</h2>
-                
-                
-                <h3>Javascript Object.defineProperty</h3>
-                
-            </hgroup>
-            <article ><pre class="prettyprint" data-lang="js">
-function Archiver() {
-  var temperature = null, archive = []
-
-  Object.defineProperty(this, 'temperature', {
-    get: function() {
-      return temperature
-    },
-    set: function(value) {
-      temperature = value
-      archive.push({ val: temperature })
-    }
-  })
-
-  this.getArchive = function() { return archive }
-}
-</pre></article>
-            
-        </slide>
-        
-        <slide  >
-            
-            <hgroup>
-                
-                <h2>VueJS</h2>
-                
-                
-                <h3>Javascript Object.defineProperty</h3>
-                
-            </hgroup>
-            <article ><pre class="prettyprint" data-lang="js">
-var arc = new Archiver()
-arc.temperature
-arc.temperature = 11
-arc.temperature = 13
-arc.getArchive()
-// => [{ val: 11 }, { val: 13 }]
-</pre></article>
-            
-        </slide>
-        
-        <slide  >
-            
-            <hgroup>
-                
-                <h2>Virtual DOM</h2>
-                
-                
-            </hgroup>
-            <article class="flexbox vcenter" ><p><img alt="virtual-dom" src="img/virtual-dom-update.png" /></p></article>
-            
-        </slide>
-        
-        <slide  >
-            
-            <hgroup>
-                
                 <h2>Reactive System</h2>
                 
                 
@@ -619,14 +552,14 @@ arc.getArchive()
 <pre class="prettyprint" data-lang="js">
 export default {
     data () {
-        acceleration: {
+        <b>acceleration: {
             y: 0
-        }
+        }</b>
     },
     mounted () {
         if (window.DeviceMotionEvent !== undefined) {
             window.ondevicemotion = (e) => {
-                this.acceleration.y = e.accelerationIncludingGravity.y || 0
+                <b>this.acceleration.y = e.accelerationIncludingGravity.y || 0</b>
             }
         }
     }
@@ -649,19 +582,33 @@ export default {
     computed: {
         isTurningLeft () {
             const { accelerationSensibility } = this.$store.state
-            Vue.set(this.keypress, 'left',
-                this.acceleration.y < accelerationSensibility * -1)
+            this.keypress.left =
+                <b>this.acceleration.y < accelerationSensibility * -1</b>
             return this.keypress.left
         },
         isTurningRight () {
             const { accelerationSensibility } = this.$store.state
-            Vue.set(this.keypress, 'right',
-                this.acceleration.y > accelerationSensibility)
+            this.keypress.right =
+                <b>this.acceleration.y > accelerationSensibility</b>
             return this.keypress.right
         }
     }
 }
 </pre></article>
+            
+        </slide>
+        
+        <slide class="segue nobackground fill"  style="background-image: url(img/remote-pad-gui-services.png)" >
+            
+            <aside class="gdbar">
+                <img src="img/logo.png">
+            </aside>
+            <hgroup class="auto-fadein">
+                
+                <h2>Remote Pad</h2>
+                
+                
+            </hgroup>
             
         </slide>
         
@@ -674,7 +621,8 @@ export default {
                 
             </hgroup>
             <article ><p>Cliente: <a href="https://github.com/comsolid/remote-pad">https://github.com/comsolid/remote-pad</a></p>
-<p>Servidor: <a href="https://github.com/comsolid/remote-pad-server">https://github.com/comsolid/remote-pad-server</a></p></article>
+<p>Servidor: <a href="https://github.com/comsolid/remote-pad-server">https://github.com/comsolid/remote-pad-server</a></p>
+<p>GUI (Interface Gráfica): <a href="https://github.com/comsolid/remote-pad-gui">https://github.com/comsolid/remote-pad-gui</a></p></article>
             
         </slide>
         
@@ -745,17 +693,11 @@ export default {
 const topics = ['alice', 'bob', 'carol', 'david']
 
 server.on('published', function(packet, client) {
-    topics.forEach(function (item) {
-        if (packet.topic === `race/${item}`) {
-            const commands = JSON.parse(packet.payload.toString())
-            robot(commands, clients[item])
-        } else if (packet.topic === `settings/${item}`) {
-            const settings = JSON.parse(packet.payload.toString())
-            if (clients[item]) {
-                clients[item].config(settings)
-            }
-        }
-    })
+    const [ type, player ] = packet.topic.split('/')
+    if (type.lastIndexOf('pad', 0) == 0) {
+        const commands = JSON.parse(packet.payload.toString())
+        <b>pad(commands, clients[player])</b>
+    }
 })
 </pre></article>
             
@@ -772,14 +714,14 @@ server.on('published', function(packet, client) {
                 
             </hgroup>
             <article ><pre class="prettyprint" data-lang="js">
-var robot = require('robotjs')
+var <b>robot</b> = require('robotjs')
 
 module.exports = function (commands, player) {
     for (let prop in commands) {
         let key = player.keys[prop]
         if (key) {
-            let toggle = (commands[prop] ? 'down' : 'up')
-            robot.keyToggle(player.keys[prop], toggle)
+            let toggle = (<b>commands[prop]</b> ? 'down' : 'up')
+            <b>robot.keyToggle(player.keys[prop], toggle)</b>
         }
     }
 }
@@ -796,6 +738,20 @@ module.exports = function (commands, player) {
                 
             </hgroup>
             <article ><p><img alt="architecture" src="img/architecture.png" style="width: 70%" class="center" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Remote Pad</h2>
+                
+                
+            </hgroup>
+            <article ><p><img alt="race-pad" src="img/racepad-page.png" style="width: 50%" class="center" /></p>
+
+<p><img alt="directional-pad" src="img/directional-pad-page.png" style="width: 50%" class="center" /></p></article>
             
         </slide>
         
