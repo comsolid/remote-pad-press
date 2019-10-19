@@ -71,7 +71,7 @@ URL: https://code.google.com/p/io-2012-slides
             </hgroup>
             <article ><p>Imagine poder controlar um jogo em seu computador usando seu smartphone
 como gamepad?</p>
-<p><img alt="racepad" src="img/racepad-page.png" style="width: 70%" class="center" /></p></article>
+<p><img alt="racepad" src="img/layout-race-snes.png" style="width: 70%" class="center" /></p></article>
             
         </slide>
         
@@ -160,7 +160,8 @@ física do dispositivo móvel.</p>
                 
                 
             </hgroup>
-            <article ><p><img alt="caniuse-devicemotion" src="img/caniuse-devicemotion.png" /></p>
+            <article ><p><img alt="device-events" src="img/caniuse-devicemotion.png" class="center" /></p>
+
 <p><a href="http://caniuse.com/#feat=deviceorientation">http://caniuse.com/#feat=deviceorientation</a></p></article>
             
         </slide>
@@ -173,7 +174,8 @@ física do dispositivo móvel.</p>
                 
                 
             </hgroup>
-            <article ><p><img alt="caniuse-touchevents" src="img/caniuse-touchevents.png" /></p>
+            <article ><p><img alt="device-events" src="img/caniuse-touchevents.png" class="center" /></p>
+
 <p><a href="http://caniuse.com/#feat=touch">http://caniuse.com/#feat=touch</a></p></article>
             
         </slide>
@@ -515,7 +517,8 @@ btnSend.onclick = function (e) {
                 
                 
             </hgroup>
-            <article ><p><img alt="caniuse-websockets" src="img/caniuse-websockets.png" /></p>
+            <article ><p><img alt="device-events" src="img/caniuse-websockets.png" class="center" /></p>
+
 <p><a href="http://caniuse.com/#feat=websockets">http://caniuse.com/#feat=websockets</a></p></article>
             
         </slide>
@@ -641,7 +644,8 @@ export default {
                 <h3>Protocolo de envio de comandos - Cliente</h3>
                 
             </hgroup>
-            <article ><pre class="prettyprint" data-lang="json">
+            <article ><p>Todos os jogadores</p>
+<pre class="prettyprint" data-lang="json">
 {
     "keypress": {
       "Y": false,
@@ -668,7 +672,7 @@ export default {
                 <h3>Protocolo de envio de comandos - Servidor</h3>
                 
             </hgroup>
-            <article ><p>Alice</p>
+            <article ><p>Jogador 1</p>
 <pre class="prettyprint" data-lang="json">
 {
     "left": "left",
@@ -679,6 +683,32 @@ export default {
     "A": "z",
     "Y": "control",
     "X": "space"
+}
+</pre></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Remote Pad</h2>
+                
+                
+                <h3>Protocolo de envio de comandos - Servidor</h3>
+                
+            </hgroup>
+            <article ><p>Jogador 2</p>
+<pre class="prettyprint" data-lang="json">
+{
+    "left": "a",
+    "right": "d",
+    "up": "w",
+    "down": "s",
+    "B": "e",
+    "A": "x",
+    "Y": "q",
+    "X": "r"
 }
 </pre></article>
             
@@ -750,13 +780,50 @@ module.exports = function (commands, player) {
             
             <hgroup>
                 
-                <h2>Remote Pad</h2>
+                <h2>Funcionamento</h2>
                 
                 
             </hgroup>
-            <article ><p><img alt="race-pad" src="img/racepad-page.png" style="width: 50%" class="center" /></p>
+            <article ><p><img alt="funcionamento" src="img/ilustracao-funcionamento.png" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Tipos de controles</h2>
+                
+                
+            </hgroup>
+            <article ><p><img alt="race-pad" src="img/layout-race-snes.png" style="width: 50%" class="center" /></p>
 
-<p><img alt="directional-pad" src="img/directional-pad-page.png" style="width: 50%" class="center" /></p></article>
+<p><img alt="directional-pad" src="img/layout-directional-snes.png" style="width: 50%" class="center" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Controles específicos para outros jogos</h2>
+                
+                
+            </hgroup>
+            <article ><p>Mario Party</p>
+<p><img src="img/adaptative-layout-shy-guy-says.png" class="center" /></p></article>
+            
+        </slide>
+        
+        <slide  >
+            
+            <hgroup>
+                
+                <h2>Controles adaptativos</h2>
+                
+                
+            </hgroup>
+            <article ><p><img src="img/adaptative-layout.png" class="center" /></p></article>
             
         </slide>
         

@@ -3,7 +3,7 @@ title: Remote Pad
 Imagine poder controlar um jogo em seu computador usando seu smartphone
 como gamepad?
 
-<p><img alt="racepad" src="img/racepad-page.png" style="width: 70%" class="center" /></p>
+<p><img alt="racepad" src="img/layout-race-snes.png" style="width: 70%" class="center" /></p>
 
 ---
 
@@ -54,7 +54,7 @@ Eventos:
 
 title: DeviceMotion suporte
 
-![caniuse-devicemotion](img/caniuse-devicemotion.png)
+<p><img alt="device-events" src="img/caniuse-devicemotion.png" class="center" /></p>
 
 <http://caniuse.com/#feat=deviceorientation>
 
@@ -62,7 +62,7 @@ title: DeviceMotion suporte
 
 title: Touch Events suporte
 
-![caniuse-touchevents](img/caniuse-touchevents.png)
+<p><img alt="device-events" src="img/caniuse-touchevents.png" class="center" /></p>
 
 <http://caniuse.com/#feat=touch>
 
@@ -298,7 +298,7 @@ btnSend.onclick = function (e) {
 
 title: WebSockets suporte
 
-![caniuse-websockets](img/caniuse-websockets.png)
+<p><img alt="device-events" src="img/caniuse-websockets.png" class="center" /></p>
 
 <http://caniuse.com/#feat=websockets>
 
@@ -384,6 +384,8 @@ GUI (Interface Gráfica): <https://github.com/comsolid/remote-pad-gui>
 title: Remote Pad
 subtitle: Protocolo de envio de comandos - Cliente
 
+Todos os jogadores
+
 <pre class="prettyprint" data-lang="json">
 {
     "keypress": {
@@ -404,7 +406,7 @@ subtitle: Protocolo de envio de comandos - Cliente
 title: Remote Pad
 subtitle: Protocolo de envio de comandos - Servidor
 
-Alice
+Jogador 1
 
 <pre class="prettyprint" data-lang="json">
 {
@@ -416,6 +418,26 @@ Alice
     "A": "z",
     "Y": "control",
     "X": "space"
+}
+</pre>
+
+---
+
+title: Remote Pad
+subtitle: Protocolo de envio de comandos - Servidor
+
+Jogador 2
+
+<pre class="prettyprint" data-lang="json">
+{
+    "left": "a",
+    "right": "d",
+    "up": "w",
+    "down": "s",
+    "B": "e",
+    "A": "x",
+    "Y": "q",
+    "X": "r"
 }
 </pre>
 
@@ -463,11 +485,31 @@ title: Remote Pad
 
 ---
 
-title: Remote Pad
+title: Funcionamento
 
-<p><img alt="race-pad" src="img/racepad-page.png" style="width: 50%" class="center" /></p>
+![funcionamento](img/ilustracao-funcionamento.png)
 
-<p><img alt="directional-pad" src="img/directional-pad-page.png" style="width: 50%" class="center" /></p>
+---
+
+title: Tipos de controles
+
+<p><img alt="race-pad" src="img/layout-race-snes.png" style="width: 50%" class="center" /></p>
+
+<p><img alt="directional-pad" src="img/layout-directional-snes.png" style="width: 50%" class="center" /></p>
+
+---
+
+title: Controles específicos para outros jogos
+
+Mario Party
+
+<p><img src="img/adaptative-layout-shy-guy-says.png" class="center" /></p>
+
+---
+
+title: Controles adaptativos
+
+<p><img src="img/adaptative-layout.png" class="center" /></p>
 
 ---
 
