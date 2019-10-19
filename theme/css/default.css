@@ -1132,51 +1132,29 @@ article.smaller q:before, article.smaller q:after {
 
 /* line 745, ../scss/default.scss */
 .flexbox {
-  display: -webkit-box !important;
-  display: -moz-box !important;
-  display: -ms-box !important;
-  display: -o-box !important;
-  display: box !important;
+  display: flex;
 }
 
 /* line 749, ../scss/default.scss */
 .flexbox.vcenter {
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  -ms-box-orient: vertical;
-  box-orient: vertical;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-box-align: center;
-  box-align: center;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -ms-box-pack: center;
-  box-pack: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
 }
 
 /* line 755, ../scss/default.scss */
 .flexbox.vleft {
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  -ms-box-orient: vertical;
-  box-orient: vertical;
-  -webkit-box-align: left;
-  -moz-box-align: left;
-  -ms-box-align: left;
-  box-align: left;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -ms-box-pack: center;
-  box-pack: center;
+  flex-direction: column;
+  justify-content: center;
   height: 100%;
   width: 100%;
 }
 
 /* line 761, ../scss/default.scss */
 .flexbox.vright {
+  /* TODO: convert to flexbox */
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
   -ms-box-orient: vertical;
